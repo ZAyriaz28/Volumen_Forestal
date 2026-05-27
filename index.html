@@ -3,16 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
-    <meta name="theme-color" content="#16a34a">
     <title>Volumen Forestal</title>
-    <link rel="apple-touch-icon" href="logo.svg">
+    <meta name="theme-color" content="#16a34a">
+    
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="manifest" href="manifest.json">
+    <link rel="apple-touch-icon" href="logo.svg">
+    
     <style>
+        /* Fondo neutro y limpio para evitar reflejos molestos en el campo */
         body {
-            background-color: #f4f6f8; /* Fondo neutro muy limpio */
+            background-color: #f4f6f8;
             min-height: 100vh;
-            /* Variables seguras para los celulares modernos sin bordes (notch) */
             padding-top: env(safe-area-inset-top);
             padding-bottom: env(safe-area-inset-bottom);
             font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
@@ -21,13 +23,13 @@
             align-items: center;
         }
 
-        /* La tarjeta ahora es completamente fluida gracias a Bootstrap */
+        /* Tarjeta sólida blanca: máximo contraste con letras oscuras */
         .app-card {
             background: #ffffff;
             border-radius: 24px;
             padding: 1.75rem 1.25rem;
             box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
-            border: 1px solid rgba(0,0,0,0.04);
+            border: 1px solid rgba(0, 0, 0, 0.04);
         }
 
         .app-title {
@@ -38,7 +40,7 @@
             letter-spacing: -0.5px;
         }
 
-        /* Inputs adaptados para pantallas táctiles */
+        /* Espaciado e inputs amplios para el uso táctil */
         .form-floating {
             margin-bottom: 1.1rem !important;
         }
@@ -48,10 +50,10 @@
             background-color: #f8fafc;
             border: 1.5px solid #e2e8f0;
             border-radius: 14px;
-            font-size: 1.1rem; /* Texto un poco más grande para celulares */
+            font-size: 1.1rem;
             font-weight: 600;
             color: #0f172a;
-            height: 62px; /* Más alto para que el dedo acierte siempre */
+            height: 62px; /* Mayor altura para que el dedo no falle al tocar */
         }
 
         .form-floating > .form-control:focus,
@@ -67,12 +69,12 @@
             padding-left: 14px;
         }
 
-        /* Botón de acción principal ultra-responsivo */
+        /* Botón principal verde sólido */
         .btn-calcular {
             background-color: #16a34a;
             border: none;
             border-radius: 14px;
-            padding: 16px; /* Padding generoso para el pulgar */
+            padding: 16px;
             font-size: 1.15rem;
             font-weight: 700;
             color: white;
@@ -85,7 +87,24 @@
             transform: scale(0.97);
         }
 
-        /* Área de resultado destacada pero limpia */
+        /* Botón de instalación: oculto por defecto y con estilo claro */
+        .btn-instalar {
+            background-color: #ffffff;
+            color: #16a34a;
+            border: 2px dashed #16a34a;
+            border-radius: 14px;
+            padding: 14px;
+            font-size: 1.05rem;
+            font-weight: 700;
+            transition: all 0.2s ease;
+        }
+
+        .btn-instalar:active {
+            background-color: #f0fdf4;
+            transform: scale(0.97);
+        }
+
+        /* Caja de resultados clara y legible */
         .result-box {
             background-color: #f0fdf4;
             border: 1.5px solid #bbf7d0;
@@ -103,14 +122,14 @@
         }
 
         .result-value {
-            font-size: 2.3rem; /* Tamaño responsivo natural */
+            font-size: 2.3rem;
             font-weight: 800;
             color: #15803d;
             margin: 0;
             line-height: 1;
         }
 
-        /* Historial diseñado para no romper el scroll en móviles */
+        /* Historial adaptable */
         .history-section {
             border-top: 1.5px solid #f1f5f9;
             padding-top: 1.25rem;
@@ -129,7 +148,7 @@
             color: #ef4444;
             font-size: 0.85rem;
             font-weight: 700;
-            padding: 4px 8px; /* Área táctil extendida */
+            padding: 4px 8px;
             border-radius: 6px;
         }
 
@@ -140,9 +159,18 @@
         .history-list {
             max-height: 180px;
             overflow-y: auto;
-            -webkit-overflow-scrolling: touch; /* Scroll suave nativo en iOS/Android */
+            -webkit-overflow-scrolling: touch; /* Scroll fluido para móviles */
             padding-right: 4px;
             margin-top: 10px;
+        }
+
+        .history-list::-webkit-scrollbar {
+            width: 5px;
+        }
+
+        .history-list::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+            border-radius: 5px;
         }
 
         .history-item {
@@ -153,6 +181,7 @@
             padding: 12px;
             margin-bottom: 10px;
             font-size: 0.9rem;
+            color: #334155;
         }
     </style>
 </head>
@@ -189,6 +218,10 @@
                         <p class="result-label">RESULTADO ESTIMADO</p>
                         <h2 id="resultadoVolumen" class="result-value">0.0000<span style="font-size: 1.2rem; font-weight: 600;"> m³</span></h2>
                     </div>
+
+                    <button id="btnInstalar" class="btn btn-instalar w-100 mb-4" style="display: none;">
+                        ⬇️ Instalar Aplicación
+                    </button>
 
                     <div class="history-section">
                         <div class="d-flex justify-content-between align-items-center">
