@@ -1,15 +1,17 @@
 {
-  "name": "Calculadora Forestal",
-  "short_name": "VolumenÁrbol",
-  "start_url": "./index.html",
+  "name": "Calculadora Forestal v1",
+  "short_name": "Forestal",
+  "description": "Cálculo de volumen de árboles offline.",
+  "start_url": "index.html",
   "display": "standalone",
-  "background_color": "#2b5876",
-  "theme_color": "#4e4376",
+  "background_color": "#f4f6f8",
+  "theme_color": "#16a34a",
   "icons": [
     {
-      "src": "icono-192.png", 
-      "sizes": "192x192",
-      "type": "image/png"
+      "src": "logo.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
     }
   ]
 }
